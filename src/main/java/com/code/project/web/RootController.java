@@ -51,8 +51,8 @@ public class RootController {
         userInfoDO.setReadDeFog(1);
         userInfoDO.setUserName(username);
         userInfoDO.setPassWord(password);
-        boolean bl = userInfoDAO.add(userInfoDO);
-        if(bl) {
+        Integer bl = userInfoDAO.add(userInfoDO);
+        if(bl > 0) {
             modelAndView.addObject("msg", "success");
             log.info("success");
         } else {
@@ -87,7 +87,7 @@ public class RootController {
                     userInfoDO.setReadDeFog(Constants.NO_RIGHT);
                     userInfoDO.setUserName(username);
                     userInfoDO.setPassWord(MD5Util.code(password1));
-                    boolean bl = userInfoDAO.add(userInfoDO);
+                    Integer bl = userInfoDAO.add(userInfoDO);
                     response.sendRedirect("/login");
                     return  modelAndView;
                 } else {

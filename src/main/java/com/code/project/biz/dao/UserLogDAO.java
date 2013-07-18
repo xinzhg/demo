@@ -1,6 +1,6 @@
 package com.code.project.biz.dao;
 
-import com.code.project.biz.dataobject.SystemLogDO;
+import com.code.project.biz.dataobject.UserLogDO;
 
 import java.util.List;
 
@@ -13,10 +13,10 @@ import java.util.List;
  */
 public interface UserLogDAO {
 
-    Integer add(SystemLogDO systemLogDO) throws Exception;
+    Integer add(UserLogDO userLogDO) throws Exception;
 
-    boolean update(SystemLogDO systemLogDO) throws Exception;
+    boolean update(UserLogDO userLogDO) throws Exception;
 
-    List<SystemLogDO> select(SystemLogDO systemLogDO) throws Exception;
+    List<UserLogDO> select(UserLogDO userLogDO) throws Exception;
 
 }

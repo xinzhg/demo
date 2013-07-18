@@ -1,49 +1,45 @@
 <?xml version="1.0" encoding="GBK"?>
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
-<sqlMap namespace="UserInfoDAO">
-    <typeAlias alias="userInfoDO" type="com.code.project.biz.dataobject.UserInfoDO" />
-    <resultMap id="userInfoDOResultMap" class="userInfoDO">
+<sqlMap namespace="CameraDAO">
+    <typeAlias alias="cameraDO" type="com.code.project.biz.dataobject.CameraDO" />
+    <resultMap id="cameraDOResultMap" class="cameraDO">
         <result property="id" column="id" />
-        <result property="userName" column="user_name" />
-        <result property="passWord" column="pass_word" />
-        <result property="type" column="type" />
-        <result property="email" column="email" />
-        <result property="readOrignal" column="read_orignal" />
-        <result property="onOff" column="on_off" />
-        <result property="deFog" column="defog" />
-        <result property="readDeFog" column="read_defog" />
-        <result property="registerCamera" column="register_camera" />
+        <result property="cameraIP" column="camera_ip" />
+        <result property="cameraName" column="camera_name" />
+        <result property="cameraStatus" column="camera_status" />
+        <result property="cameraMaster" column="camera_master" />
         <result property="createTime" column="create_time" />
         <result property="modifyTime" column="modify_time" />
-
     </resultMap>
 
-    <insert id="insert" parameterClass="userInfoDO">
+    <insert id="insert" parameterClass="cameraDO">
         <![CDATA[
 	        insert into
-	        user_info
-	        (user_name,pass_word,type,email,read_orignal,on_off,defog,read_defog,register_camera,create_time,modify_time)
+	        camera
+	        (camera_ip,camera_name,camera_status,camera_master,create_time,modify_time)
 	        values
-	        (#userName#,#passWord#,#type#,#email#,#readOrignal#,#onOff#,#deFog#,#readDeFog#,#registerCamera#,now(),now())
+	        (#cameraIP#,#cameraName#,#cameraStatus#,#cameraMaster#,now(),now())
 	    ]]>
         <selectKey resultClass="int"  keyProperty="id">
             <![CDATA[SELECT LAST_INSERT_ID() AS ID ]]>
         </selectKey>
     </insert>
 
-    <select id="select" parameterClass="userInfoDO" resultMap="userInfoDOResultMap">
-        <![CDATA[select  * from user_info        ]]>
-        <isNotNull prepend="" property="userName">
-            <![CDATA[where user_name = #userName#    ]]>
+    <select id="select" parameterClass="cameraDO" resultMap="cameraDOResultMap">
+        <![CDATA[select  * from camera   where 1=1     ]]>
+        <isNotNull prepend="and" property="cameraName">
+            <![CDATA[ camera_name = #cameraName#    ]]>
+        </isNotNull>
+        <isNotNull prepend="and" property="cameraMaster">
+            <![CDATA[ camera_master = #cameraMaster#    ]]>
         </isNotNull>
  </select>
 
-    <update id="update" parameterClass="userInfoDO">
+    <update id="update" parameterClass="cameraDO">
         <![CDATA[
-	        update user_info
-	        set email=#email#,  type=#type# , read_orignal=#readOrignal# , on_off = #onOff# , defog = #deFog#  ,
-	        read_defog = #readDeFog# ,register_camera = #registerCamera# ,modify_time = #modifyTime#
-	        where name=#userName#
+	        update camera
+	        set camera_ip=#cameraIP#,  camera_status=#cameraStatus# , camera_master=#cameraMaster# ,modify_time = now()
+	        where camera_name = #cameraName#
 	    ]]>
     </update>
 

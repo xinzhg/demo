@@ -1,6 +1,8 @@
 package com.code.project;
 
+import com.code.project.biz.dao.SystemLogDAO;
 import com.code.project.biz.dao.UserLogDAO;
+import com.code.project.biz.dataobject.SystemLogDO;
 import com.code.project.biz.dataobject.UserLogDO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,17 +27,17 @@ import java.util.List;
 public class TestSystemLog {
 
     @Autowired
-    UserLogDAO userLogDAO;
+    SystemLogDAO systemLogDAO;
 
 
     @Test
     public void testInsert() {
         try {
-            UserLogDO userLogDO = new UserLogDO();
-            userLogDO.setUserName("username");
-            userLogDO.setContent("content");
-            userLogDO.setUserTime(new Date());
-            userLogDAO.add(userLogDO);
+            SystemLogDO systemLogDO = new SystemLogDO();
+            systemLogDO.setServerName("servername");
+            systemLogDO.setContent("content");
+            systemLogDO.setSystemTime(new Date());
+            systemLogDAO.add(systemLogDO);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -46,11 +48,11 @@ public class TestSystemLog {
     @Test
     public void testUpdate() {
         try {
-            UserLogDO userLogDO = new UserLogDO();
-            userLogDO.setUserName("username");
-            userLogDO.setContent("content123");
-            userLogDO.setUserTime(new Date());
-            userLogDAO.update(userLogDO);
+            SystemLogDO systemLogDO = new SystemLogDO();
+            systemLogDO.setServerName("servername");
+            systemLogDO.setContent("content123");
+            systemLogDO.setSystemTime(new Date());
+            systemLogDAO.update(systemLogDO);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -60,11 +62,10 @@ public class TestSystemLog {
     @Test
     public void testQuery() {
         try {
-            UserLogDO userLogDO = new UserLogDO();
-            userLogDO.setUserName("username");
-            userLogDO.setContent("content123");
-            List<UserLogDO> list = userLogDAO.select(userLogDO);
-            for(UserLogDO i : list) {
+            SystemLogDO systemLogDO = new SystemLogDO();
+            systemLogDO.setServerName("servername");
+            List<SystemLogDO> list = systemLogDAO.select(systemLogDO);
+            for(SystemLogDO i : list) {
                 System.out.println(i);
             }
         } catch (Exception e) {

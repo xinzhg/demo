@@ -1,13 +1,16 @@
 package com.code.project;
 
 import com.code.project.biz.dao.CameraDAO;
+import com.code.project.biz.dao.UserCameraDAO;
 import com.code.project.biz.dataobject.CameraDO;
+import com.code.project.biz.dataobject.UserCameraDO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,18 +27,18 @@ import java.util.List;
 public class TestUserCamera {
 
     @Autowired
-    CameraDAO cameraDAO;
+    UserCameraDAO userCameraDAO;
 
 
     @Test
     public void testInsert() {
         try {
-            CameraDO cameraDO = new CameraDO();
-            cameraDO.setCameraIP("127.0.0.1");
-            cameraDO.setCameraMaster("user");
-            cameraDO.setCameraName("abc");
-            cameraDO.setCameraStatus(1);
-            cameraDAO.add(cameraDO);
+            UserCameraDO userCameraDO = new UserCameraDO();
+            userCameraDO.setCameraName("cameraName");
+            userCameraDO.setCameraId(12);
+            userCameraDO.setCreateTime(new Date());
+            userCameraDO.setUserName("username");
+            userCameraDAO.add(userCameraDO);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -46,12 +49,12 @@ public class TestUserCamera {
     @Test
     public void testUpdate() {
         try {
-            CameraDO cameraDO = new CameraDO();
-            cameraDO.setCameraIP("127.0.0.11");
-            cameraDO.setCameraMaster("user123");
-            cameraDO.setCameraName("abc");
-            cameraDO.setCameraStatus(1);
-            cameraDAO.update(cameraDO);
+            UserCameraDO userCameraDO = new UserCameraDO();
+            userCameraDO.setCameraName("cameraName12");
+            userCameraDO.setCameraId(122);
+            userCameraDO.setCreateTime(new Date());
+            userCameraDO.setUserName("username");
+            userCameraDAO.update(userCameraDO);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -61,12 +64,10 @@ public class TestUserCamera {
     @Test
     public void testQuery() {
         try {
-            CameraDO cameraDO = new CameraDO();
-            cameraDO.setCameraIP("127.0.0.11");
-            cameraDO.setCameraMaster("user123");
-            cameraDO.setCameraName("abc");
-            List<CameraDO> list = cameraDAO.select(cameraDO);
-            for(CameraDO i : list) {
+            UserCameraDO userCameraDO = new UserCameraDO();
+            userCameraDO.setUserName("username");
+            List<UserCameraDO> list = userCameraDAO.select(userCameraDO);
+            for(UserCameraDO i : list) {
                 System.out.println(i);
             }
         } catch (Exception e) {

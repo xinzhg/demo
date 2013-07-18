@@ -1,7 +1,9 @@
 package com.code.project.biz.dao.impl;
 
 
+import com.code.project.biz.dao.CameraDAO;
 import com.code.project.biz.dao.UserInfoDAO;
+import com.code.project.biz.dataobject.CameraDO;
 import com.code.project.biz.dataobject.UserInfoDO;
 
 import java.util.List;
@@ -13,17 +15,19 @@ import java.util.List;
  * Time: 下午2:28
  * To change this template use File | Settings | File Templates.
  */
-public class CameraDAOImpl extends BaseDAOImpl implements UserInfoDAO {
-    public Integer add(UserInfoDO userInfoDO) throws Exception {
-        return (Integer)getSqlMapClientTemplate().insert("UserInfoDAO.insert",userInfoDO);
+public class CameraDAOImpl extends BaseDAOImpl implements CameraDAO {
+    @Override
+    public Integer add(CameraDO cameraDO) throws Exception {
+        return (Integer)getSqlMapClientTemplate().insert("CameraDAO.insert" , cameraDO);
     }
 
-    public boolean update(UserInfoDO userInfoDO) throws Exception {
-        return getSqlMapClientTemplate().update("UserInfoDAO.update",userInfoDO) > 0;
+    @Override
+    public boolean update(CameraDO cameraDO) throws Exception {
+        return getSqlMapClientTemplate().update("CameraDAO.update" , cameraDO) >0;
     }
 
-    public List<UserInfoDO> select(UserInfoDO userInfoDO) throws Exception {
-        return (List<UserInfoDO>)getSqlMapClientTemplate().queryForList("UserInfoDAO.select",userInfoDO);
+    @Override
+    public List<CameraDO> select(CameraDO cameraDO) throws Exception {
+        return getSqlMapClientTemplate().queryForList("CameraDAO.select" , cameraDO);
     }
-
 }

@@ -2,7 +2,9 @@ package com.code.project.biz.dao.impl;
 
 
 import com.code.project.biz.dao.CameraDAO;
+import com.code.project.biz.dao.SystemLogDAO;
 import com.code.project.biz.dataobject.CameraDO;
+import com.code.project.biz.dataobject.SystemLogDO;
 
 import java.util.List;
 
@@ -13,19 +15,19 @@ import java.util.List;
  * Time: 下午2:28
  * To change this template use File | Settings | File Templates.
  */
-public class SystemLogDAOImpl extends BaseDAOImpl implements CameraDAO {
+public class SystemLogDAOImpl extends BaseDAOImpl implements SystemLogDAO {
     @Override
-    public Integer add(CameraDO cameraDO) throws Exception {
-        return (Integer)getSqlMapClientTemplate().insert("CameraDO.insert" , cameraDO);
+    public Integer add(SystemLogDO systemLogDO) throws Exception {
+        return (Integer)getSqlMapClientTemplate().insert("SystemLogDAO.insert",systemLogDO);
     }
 
     @Override
-    public boolean update(CameraDO cameraDO) throws Exception {
-        return getSqlMapClientTemplate().update("CameraDO.update" , cameraDO) >0;
+    public boolean update(SystemLogDO systemLogDO) throws Exception {
+        return getSqlMapClientTemplate().update("SystemLogDAO.update",systemLogDO) > 0;
     }
 
     @Override
-    public List<CameraDO> select(CameraDO cameraDO) throws Exception {
-        return getSqlMapClientTemplate().queryForList("CameraDO.select" , cameraDO);
+    public List<SystemLogDO> select(SystemLogDO systemLogDO) throws Exception {
+        return getSqlMapClientTemplate().queryForList("SystemLogDAO.select",systemLogDO);
     }
 }

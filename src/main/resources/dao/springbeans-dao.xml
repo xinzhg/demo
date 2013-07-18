@@ -8,4 +8,12 @@
 
     <bean id="userInfoDAO" class="com.code.project.biz.dao.impl.UserInfoDAOImpl" />
 
+    <bean id="userLogDAO" class="com.code.project.biz.dao.impl.UserLogDAOImpl" />
+
+    <bean id="userCameraDAO" class="com.code.project.biz.dao.impl.UserCameraDAOImpl" />
+
+    <bean id="systemLogDAO" class="com.code.project.biz.dao.impl.SystemLogDAOImpl" />
+
+    <bean id="cameraDAO" class="com.code.project.biz.dao.impl.CameraDAOImpl" />
+
 </beans>

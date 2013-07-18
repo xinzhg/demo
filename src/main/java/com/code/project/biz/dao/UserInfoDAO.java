@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface UserInfoDAO {
 
-    boolean add(UserInfoDO userInfoDO) throws Exception;
+    Integer add(UserInfoDO userInfoDO) throws Exception;
 
     boolean update(UserInfoDO userInfoDO) throws Exception;
 

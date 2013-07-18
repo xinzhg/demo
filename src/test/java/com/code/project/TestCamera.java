@@ -1,6 +1,8 @@
 package com.code.project;
 
+import com.code.project.biz.dao.CameraDAO;
 import com.code.project.biz.dao.SystemLogDAO;
+import com.code.project.biz.dataobject.CameraDO;
 import com.code.project.biz.dataobject.SystemLogDO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,17 +27,18 @@ import java.util.List;
 public class TestCamera {
 
     @Autowired
-    SystemLogDAO systemLogDAO;
+    CameraDAO cameraDAO;
 
 
     @Test
     public void testInsert() {
         try {
-            SystemLogDO systemLogDO = new SystemLogDO();
-            systemLogDO.setServerName("servername");
-            systemLogDO.setContent("content");
-            systemLogDO.setSystemTime(new Date());
-            systemLogDAO.add(systemLogDO);
+            CameraDO cameraDO = new CameraDO();
+            cameraDO.setCameraIP("127.0.0.1");
+            cameraDO.setCameraMaster("user");
+            cameraDO.setCameraName("abc");
+            cameraDO.setCameraStatus(1);
+            cameraDAO.add(cameraDO);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -46,11 +49,12 @@ public class TestCamera {
     @Test
     public void testUpdate() {
         try {
-            SystemLogDO systemLogDO = new SystemLogDO();
-            systemLogDO.setServerName("servername");
-            systemLogDO.setContent("content123");
-            systemLogDO.setSystemTime(new Date());
-            systemLogDAO.update(systemLogDO);
+            CameraDO cameraDO = new CameraDO();
+            cameraDO.setCameraIP("127.0.0.11");
+            cameraDO.setCameraMaster("user123");
+            cameraDO.setCameraName("abc");
+            cameraDO.setCameraStatus(1);
+            cameraDAO.update(cameraDO);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -60,10 +64,12 @@ public class TestCamera {
     @Test
     public void testQuery() {
         try {
-            SystemLogDO systemLogDO = new SystemLogDO();
-            systemLogDO.setServerName("servername");
-            List<SystemLogDO> list = systemLogDAO.select(systemLogDO);
-            for(SystemLogDO i : list) {
+            CameraDO cameraDO = new CameraDO();
+            cameraDO.setCameraIP("127.0.0.11");
+            cameraDO.setCameraMaster("user123");
+            cameraDO.setCameraName("abc");
+            List<CameraDO> list = cameraDAO.select(cameraDO);
+            for(CameraDO i : list) {
                 System.out.println(i);
             }
         } catch (Exception e) {

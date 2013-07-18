@@ -14,8 +14,8 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class UserInfoDAOImpl extends BaseDAOImpl implements UserInfoDAO {
-    public boolean add(UserInfoDO userInfoDO) throws Exception {
-        return (Integer)getSqlMapClientTemplate().insert("UserInfoDAO.insert",userInfoDO) > 0;
+    public Integer add(UserInfoDO userInfoDO) throws Exception {
+        return (Integer)getSqlMapClientTemplate().insert("UserInfoDAO.insert",userInfoDO);
     }
 
     public boolean update(UserInfoDO userInfoDO) throws Exception {

@@ -1,5 +1,7 @@
 package com.code.project.biz.dataobject;
 
+import java.util.Date;
+
 /**
  * Created with IntelliJ IDEA.
  * User: zhang
@@ -15,6 +17,26 @@ public class UserCameraDO {
     private String cameraName;
 
     private Integer cameraId;
+
+    private Date createTime;
+
+    private Date modifyTime;
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getModifyTime() {
+        return modifyTime;
+    }
+
+    public void setModifyTime(Date modifyTime) {
+        this.modifyTime = modifyTime;
+    }
 
     public Integer getId() {
         return id;

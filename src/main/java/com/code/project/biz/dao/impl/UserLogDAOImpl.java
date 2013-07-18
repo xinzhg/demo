@@ -2,7 +2,9 @@ package com.code.project.biz.dao.impl;
 
 
 import com.code.project.biz.dao.SystemLogDAO;
+import com.code.project.biz.dao.UserLogDAO;
 import com.code.project.biz.dataobject.SystemLogDO;
+import com.code.project.biz.dataobject.UserLogDO;
 
 import java.util.List;
 
@@ -13,19 +15,19 @@ import java.util.List;
  * Time: 下午2:28
  * To change this template use File | Settings | File Templates.
  */
-public class UserLogDAOImpl extends BaseDAOImpl implements SystemLogDAO {
+public class UserLogDAOImpl extends BaseDAOImpl implements UserLogDAO {
     @Override
-    public Integer add(SystemLogDO systemLogDO) throws Exception {
-        return (Integer)getSqlMapClientTemplate().insert("SystemLogDO.insert",systemLogDO);
+    public Integer add(UserLogDO userLogDO) throws Exception {
+        return (Integer)getSqlMapClientTemplate().insert("UserLogDAO.insert",userLogDO);
     }
 
     @Override
-    public boolean update(SystemLogDO systemLogDO) throws Exception {
-        return getSqlMapClientTemplate().update("SystemLogDO.update",systemLogDO) > 0;
+    public boolean update(UserLogDO userLogDO) throws Exception {
+        return getSqlMapClientTemplate().update("UserLogDAO.update",userLogDO) > 0;
     }
 
     @Override
-    public List<SystemLogDO> select(SystemLogDO systemLogDO) throws Exception {
-        return getSqlMapClientTemplate().queryForList("SystemLogDO.select",systemLogDO);
+    public List<UserLogDO> select(UserLogDO userLogDO) throws Exception {
+        return getSqlMapClientTemplate().queryForList("UserLogDAO.select",userLogDO);
     }
 }

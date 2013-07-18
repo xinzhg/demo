@@ -1,41 +1,48 @@
 <?xml version="1.0" encoding="GBK"?>
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
-<sqlMap namespace="SystemLogDAO">
-    <typeAlias alias="systemLogDO" type="com.code.project.biz.dataobject.SystemLogDO" />
-    <resultMap id="systemLogDOResultMap" class="systemLogDO">
+<sqlMap namespace="UserCameraDAO">
+    <typeAlias alias="userCameraDO" type="com.code.project.biz.dataobject.UserCameraDO" />
+    <resultMap id="userCameraDOResultMap" class="userCameraDO">
         <result property="id" column="id" />
-        <result property="systemTime" column="system_time" />
-        <result property="serverName" column="server_name" />
-        <result property="content" column="content" />
+        <result property="userName" column="user_name" />
+        <result property="cameraName" column="camera_name" />
+        <result property="cameraId" column="camera_id" />
         <result property="createTime" column="create_time" />
         <result property="modifyTime" column="modify_time" />
     </resultMap>
 
-    <insert id="insert" parameterClass="systemLogDO">
+    <insert id="insert" parameterClass="userCameraDO">
         <![CDATA[
 	        insert into
-	        system_log
-	        (system_time,server_name,content,create_time,modify_time)
+	        user_camera
+	        (user_name,camera_name,camera_id,create_time,modify_time)
 	        values
-	        (#systemTime#,#serverName#,#content#,now(),now())
+	        (#userName#,#cameraName#,#cameraId#,now(),now())
 	    ]]>
         <selectKey resultClass="int"  keyProperty="id">
             <![CDATA[SELECT LAST_INSERT_ID() AS ID ]]>
         </selectKey>
     </insert>
 
-    <select id="select" parameterClass="systemLogDO" resultMap="systemLogDOResultMap">
-        <![CDATA[select  * from system_log        ]]>
-        <isNotNull prepend="" property="serverName">
-            <![CDATA[where server_name = #server_name#    ]]>
+    <select id="select" parameterClass="userCameraDO" resultMap="userCameraDOResultMap">
+        <![CDATA[select  * from user_camera  where 1=1      ]]>
+        <isNotNull prepend="and" property="userName">
+            <![CDATA[ user_name = #userName#    ]]>
         </isNotNull>
+        <isNotNull prepend="and" property="cameraName">
+            <![CDATA[ camera_name = #cameraName#    ]]>
+        </isNotNull>
+        <isNotNull prepend="and" property="cameraId">
+            <![CDATA[ camera_id = #cameraId#    ]]>
+        </isNotNull>
+
  </select>
 
-    <update id="update" parameterClass="systemLogDO">
+    <update id="update" parameterClass="userCameraDO">
         <![CDATA[
-	        update system_log
-	        set content=#content#,  system_time=#systemTime# ,modify_time = now()
-	        where server_name = #server_name#
+	        update user_camera
+	        set camera_name = #cameraName# ,  camera_id = #cameraId#  ,modify_time = now()
+	        where user_name = #userName#
 	    ]]>
     </update>
 

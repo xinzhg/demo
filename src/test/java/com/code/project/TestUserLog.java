@@ -1,7 +1,9 @@
 package com.code.project;
 
 import com.code.project.biz.dao.UserInfoDAO;
+import com.code.project.biz.dao.UserLogDAO;
 import com.code.project.biz.dataobject.UserInfoDO;
+import com.code.project.biz.dataobject.UserLogDO;
 import com.code.project.biz.util.MD5Util;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,22 +28,17 @@ import java.util.List;
 public class TestUserLog {
 
     @Autowired
-    UserInfoDAO userInfoDAO;
+    UserLogDAO userLogDAO;
 
 
     @Test
     public void testInsert() {
         try {
-            UserInfoDO userInfoDO = new UserInfoDO();
-            userInfoDO.setUserName("username");
-            userInfoDO.setPassWord(MD5Util.code("123"));
-            userInfoDO.setReadOrignal(1);
-            userInfoDO.setType(1);
-            userInfoDO.setDeFog(1);
-            userInfoDO.setEmail("123@email.com");
-            userInfoDO.setRegisterCamera(2);
-            userInfoDO.setReadDeFog(3);
-            userInfoDAO.add(userInfoDO);
+            UserLogDO userLogDO = new UserLogDO();
+            userLogDO.setUserName("username");
+            userLogDO.setContent("content");
+            userLogDO.setUserTime(new Date());
+            userLogDAO.add(userLogDO);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -51,16 +49,11 @@ public class TestUserLog {
     @Test
     public void testUpdate() {
         try {
-            UserInfoDO userInfoDO = new UserInfoDO();
-            userInfoDO.setUserName("username");
-            userInfoDO.setPassWord(MD5Util.code("12345"));
-            userInfoDO.setReadOrignal(1);
-            userInfoDO.setType(1);
-            userInfoDO.setDeFog(1);
-            userInfoDO.setEmail("12345@email.com");
-            userInfoDO.setRegisterCamera(2);
-            userInfoDO.setReadDeFog(3);
-            userInfoDAO.update(userInfoDO);
+            UserLogDO userLogDO = new UserLogDO();
+            userLogDO.setUserName("username");
+            userLogDO.setContent("content123");
+            userLogDO.setUserTime(new Date());
+            userLogDAO.update(userLogDO);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -70,18 +63,12 @@ public class TestUserLog {
     @Test
     public void testQuery() {
         try {
-            UserInfoDO userInfoDO = new UserInfoDO();
-            userInfoDO.setUserName("username");
-            userInfoDO.setPassWord(MD5Util.code("12345"));
-            userInfoDO.setReadOrignal(1);
-            userInfoDO.setType(1);
-            userInfoDO.setDeFog(1);
-            userInfoDO.setEmail("12345@email.com");
-            userInfoDO.setRegisterCamera(2);
-            userInfoDO.setReadDeFog(3);
-            List<UserInfoDO> list = userInfoDAO.select(userInfoDO);
-            for (UserInfoDO i: list) {
-                   System.out.println(i);
+            UserLogDO userLogDO = new UserLogDO();
+            userLogDO.setUserName("username");
+            userLogDO.setContent("content123");
+            List<UserLogDO> list = userLogDAO.select(userLogDO);
+            for(UserLogDO i : list) {
+                System.out.println(i);
             }
         } catch (Exception e) {
             e.printStackTrace();

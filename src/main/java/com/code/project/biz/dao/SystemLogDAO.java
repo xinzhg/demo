@@ -1,6 +1,6 @@
 package com.code.project.biz.dao;
 
-import com.code.project.biz.dataobject.CameraDO;
+import com.code.project.biz.dataobject.SystemLogDO;
 
 import java.util.List;
 
@@ -13,10 +13,10 @@ import java.util.List;
  */
 public interface SystemLogDAO {
 
-    Integer add(CameraDO cameraDO) throws Exception;
+    Integer add(SystemLogDO systemLogDO) throws Exception;
 
-    boolean update(CameraDO cameraDO) throws Exception;
+    boolean update(SystemLogDO systemLogDO) throws Exception;
 
-    List<CameraDO> select(CameraDO cameraDO) throws Exception;
+    List<SystemLogDO> select(SystemLogDO systemLogDO) throws Exception;
 
 }

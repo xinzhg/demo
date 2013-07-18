@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="GBK"?>
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
-<sqlMap namespace="SystemLogDAO">
-    <typeAlias alias="systemLogDO" type="com.code.project.biz.dataobject.SystemLogDO" />
-    <resultMap id="systemLogDOResultMap" class="systemLogDO">
+<sqlMap namespace="UserLogDAO">
+    <typeAlias alias="userLogDO" type="com.code.project.biz.dataobject.UserLogDO" />
+    <resultMap id="userLogDOResultMap" class="userLogDO">
         <result property="id" column="id" />
-        <result property="systemTime" column="system_time" />
-        <result property="serverName" column="server_name" />
+        <result property="userTime" column="user_time" />
+        <result property="userName" column="user_name" />
         <result property="content" column="content" />
         <result property="createTime" column="create_time" />
         <result property="modifyTime" column="modify_time" />
     </resultMap>
 
-    <insert id="insert" parameterClass="systemLogDO">
+    <insert id="insert" parameterClass="userLogDO">
         <![CDATA[
 	        insert into
-	        system_log
-	        (system_time,server_name,content,create_time,modify_time)
+	        user_log
+	        (user_time,user_name,content,create_time,modify_time)
 	        values
-	        (#systemTime#,#serverName#,#content#,now(),now())
+	        (#userTime#,#userName#,#content#,now(),now())
 	    ]]>
         <selectKey resultClass="int"  keyProperty="id">
             <![CDATA[SELECT LAST_INSERT_ID() AS ID ]]>
         </selectKey>
     </insert>
 
-    <select id="select" parameterClass="systemLogDO" resultMap="systemLogDOResultMap">
-        <![CDATA[select  * from system_log        ]]>
-        <isNotNull prepend="" property="serverName">
-            <![CDATA[where server_name = #server_name#    ]]>
+    <select id="select" parameterClass="userLogDO" resultMap="userLogDOResultMap">
+        <![CDATA[select  * from user_log        ]]>
+        <isNotNull prepend="" property="userName">
+            <![CDATA[where user_name = #userName#    ]]>
         </isNotNull>
  </select>
 
-    <update id="update" parameterClass="systemLogDO">
+    <update id="update" parameterClass="userLogDO">
         <![CDATA[
-	        update system_log
-	        set content=#content#,  system_time=#systemTime# ,modify_time = now()
-	        where server_name = #server_name#
+	        update user_log
+	        set content=#content#,user_time = #userTime#,modify_time = now()
+	        where user_name = #userName#
 	    ]]>
     </update>
 

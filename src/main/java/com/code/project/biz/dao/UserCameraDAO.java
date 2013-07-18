@@ -1,6 +1,7 @@
 package com.code.project.biz.dao;
 
 import com.code.project.biz.dataobject.CameraDO;
+import com.code.project.biz.dataobject.UserCameraDO;
 
 import java.util.List;
 
@@ -13,10 +14,10 @@ import java.util.List;
  */
 public interface UserCameraDAO {
 
-    Integer add(CameraDO cameraDO) throws Exception;
+    Integer add(UserCameraDO userCameraDO) throws Exception;
 
-    boolean update(CameraDO cameraDO) throws Exception;
+    boolean update(UserCameraDO userCameraDO) throws Exception;
 
-    List<CameraDO> select(CameraDO cameraDO) throws Exception;
+    List<UserCameraDO> select(UserCameraDO userCameraDO) throws Exception;
 
 }

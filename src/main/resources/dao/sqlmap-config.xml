@@ -9,5 +9,11 @@
 
     <sqlMap resource="dao/sqlmap/userinfo-sqlmap.xml" />
 
+    <sqlMap resource="dao/sqlmap/userlog-sqlmap.xml" />
 
+    <sqlMap resource="dao/sqlmap/camera-sqlmap.xml" />
+
+    <sqlMap resource="dao/sqlmap/systemlog-sqlmap.xml" />
+
+    <sqlMap resource="dao/sqlmap/usercamera-sqlmap.xml" />
 </sqlMapConfig>

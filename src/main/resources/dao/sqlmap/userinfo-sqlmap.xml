@@ -43,7 +43,7 @@
 	        update user_info
 	        set email=#email#,  type=#type# , read_orignal=#readOrignal# , on_off = #onOff# , defog = #deFog#  ,
 	        read_defog = #readDeFog# ,register_camera = #registerCamera# ,modify_time = #modifyTime#
-	        where name=#userName#
+	        where user_name=#userName#
 	    ]]>
     </update>
 
