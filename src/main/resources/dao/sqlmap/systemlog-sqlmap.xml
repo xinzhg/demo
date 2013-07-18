@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="UserInfoDAO">
+    <typeAlias alias="cameraDO" type="com.code.project.biz.dataobject.CameraDO" />
+    <resultMap id="cameraDOResultMap" class="cameraDO">
+        <result property="id" column="id" />
+        <result property="cameraIP" column="camera_ip" />
+        <result property="cameraName" column="camera_name" />
+        <result property="cameraStatus" column="camera_status" />
+        <result property="cameraMaster" column="camera_master" />
+        <result property="createTime" column="create_time" />
+        <result property="modifyTime" column="modify_time" />
+    </resultMap>
+
+    <insert id="insert" parameterClass="cameraDO">
+        <![CDATA[
+	        insert into
+	        camera
+	        (camera_ip,camera_name,camera_status,camera_master,create_time,modify_time)
+	        values
+	        (#cameraIP#,#cameraName#,#cameraStatus#,#cameraMaster#,#createTime#,#modifyTime#,now(),now())
+	    ]]>
+        <selectKey resultClass="int"  keyProperty="id">
+            <![CDATA[SELECT LAST_INSERT_ID() AS ID ]]>
+        </selectKey>
+    </insert>
+
+    <select id="select" parameterClass="cameraDO" resultMap="cameraDOResultMap">
+        <![CDATA[select  * from camera        ]]>
+        <isNotNull prepend="" property="cameraName">
+            <![CDATA[where camera_name = #cameraName#    ]]>
+        </isNotNull>
+        <isNotNull prepend="" property="cameraMaster">
+            <![CDATA[where camera_master = #cameraMaster#    ]]>
+        </isNotNull>
+ </select>
+
+    <update id="update" parameterClass="cameraDO">
+        <![CDATA[
+	        update camera
+	        set camera_ip=#cameraIP#,  camera_status=#cameraStatus# , camera_master=#cameraMaster# ,modify_time = now()
+	        where camera_name = #cameraName#
+	    ]]>
+    </update>
+
+</sqlMap>
