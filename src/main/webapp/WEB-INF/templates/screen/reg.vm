@@ -54,6 +54,7 @@
         <h1>Welcome 欢迎</h1>
         <h2 class="form-signin-heading">Please sign up</h2>
         <input name="username" type="text" class="input-block-level" placeholder="User Name">
+        <input name="email" type="text" class="input-block-level" placeholder="User Email">
         <input name="password1" type="password" class="input-block-level" placeholder="Password">
         <input name="password2" type="password" class="input-block-level" placeholder="Password again">
 

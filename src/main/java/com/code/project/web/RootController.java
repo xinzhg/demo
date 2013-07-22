@@ -1,5 +1,6 @@
 package com.code.project.web;
 
+import com.code.project.biz.constants.Constants;
 import com.code.project.biz.dao.TestDAO;
 import com.code.project.biz.dao.UserInfoDAO;
 import com.code.project.biz.dataobject.TestDO;
@@ -70,6 +71,7 @@ public class RootController {
             String username = request.getParameter("username");
             String password1 = request.getParameter("password1");
             String password2 = request.getParameter("password2");
+            String email = request.getParameter("email");
             if((username == null) && (password1 == null) && (password2 == null)) {
                 modelAndView.addObject("blank", "true");;
                 return  modelAndView;
@@ -79,10 +81,10 @@ public class RootController {
             } else if ((username != null) && (password1 != null) && (password2 != null)) {
                 if (password1.trim().equals(password2.trim())) {
                     UserInfoDO userInfoDO = new UserInfoDO();
-                    userInfoDO.setDeFog(1);
+                    userInfoDO.setDeFog(Constants.NO_RIGHT);
                     userInfoDO.setEmail("123");
-                    userInfoDO.setOnOff(1);
-                    userInfoDO.setReadDeFog(1);
+                    userInfoDO.setOnOff(Constants.NO_RIGHT);
+                    userInfoDO.setReadDeFog(Constants.NO_RIGHT);
                     userInfoDO.setUserName(username);
                     userInfoDO.setPassWord(MD5Util.code(password1));
                     boolean bl = userInfoDAO.add(userInfoDO);
@@ -112,15 +114,11 @@ public class RootController {
             cookie.setDomain(host);
             cookie.setMaxAge(99999999);
             response.addCookie(cookie);
-            if (true) {
-                cookie = new Cookie("SESSION_LOGIN_PASSWORD", MD5Util.code(password));
-                cookie.setPath("/");
-                cookie.setDomain(host);
-                cookie.setMaxAge(99999999);
-                response.addCookie(cookie);
-            }
-
-
+            cookie = new Cookie("SESSION_LOGIN_PASSWORD", MD5Util.code(password));
+            cookie.setPath("/");
+            cookie.setDomain(host);
+            cookie.setMaxAge(99999999);
+            response.addCookie(cookie);
             UserInfoDO userInfoDO = new UserInfoDO();
             userInfoDO.setUserName(username);
             userInfoDO.setPassWord(MD5Util.code(password));
