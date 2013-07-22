@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <appender name="APPENDER_INFO" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="file" value="d:\\home\\admin\\project\\logs\\info.log" />
+        <param name="threshold" value="info" />
+        <param name="encoding" value="GBK" />
+        <param name="append" value="true" />
+        <!-- Rollover at midnight each day -->
+        <param name="DatePattern" value="'.'yyyy-MM-dd" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="%n%-4r [%d{yyyy-MM-dd HH:mm:ss}] [%X{requestURIWithQueryString}] %-5p %c{2} - %m%n" />
+        </layout>
+    </appender>
+
+    <appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+        <param name="threshold" value="warn" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{dd HH:mm:ss,SSS\} %-5p] [%t] %c{2\} - %m%n" />
+        </layout>
+    </appender>
+
+    <appender name="APPENDER_ERROR" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="file"
+               value="d:\\home\\admin\\project\\logs\\error.log" />
+        <param name="threshold" value="error" />
+        <param name="encoding" value="GBK" />
+        <param name="append" value="true" />
+        <!-- Rollover at midnight each day -->
+        <param name="DatePattern" value="'.'yyyy-MM-dd" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="%n%-4r [%d{yyyy-MM-dd HH:mm:ss}] [%X{requestURIWithQueryString}] %-5p %c{2} - %m%n" />
+        </layout>
+    </appender>
+
+    <root>
+        <level value="debug" />
+        <appender-ref ref="APPENDER_INFO" />
+        <appender-ref ref="APPENDER_ERROR" />
+    </root>
+</log4j:configuration>

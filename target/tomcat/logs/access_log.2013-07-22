@@ -1,0 +1,7 @@
+0:0:0:0:0:0:0:1 - - [22/Jul/2013:14:34:07 +0800] "GET /reg.htm HTTP/1.1" 200 2279 http-bio-8088-exec-1 1558
+0:0:0:0:0:0:0:1 - - [22/Jul/2013:14:34:08 +0800] "GET /favicon.ico HTTP/1.1" 404 952 http-bio-8088-exec-3 4
+0:0:0:0:0:0:0:1 - - [22/Jul/2013:14:34:15 +0800] "POST /reg.htm HTTP/1.1" 302 128 http-bio-8088-exec-4 1439
+0:0:0:0:0:0:0:1 - - [22/Jul/2013:14:34:15 +0800] "GET /login HTTP/1.1" 200 2126 http-bio-8088-exec-2 20
+0:0:0:0:0:0:0:1 - - [22/Jul/2013:14:34:15 +0800] "GET /css/bootstrap-responsive.min.css HTTP/1.1" 404 952 http-bio-8088-exec-6 2
+0:0:0:0:0:0:0:1 - - [22/Jul/2013:14:34:15 +0800] "GET /js/bootstrap.min.js HTTP/1.1" 404 952 http-bio-8088-exec-7 5
+0:0:0:0:0:0:0:1 - - [22/Jul/2013:14:34:16 +0800] "GET /favicon.ico HTTP/1.1" 404 952 http-bio-8088-exec-9 2
