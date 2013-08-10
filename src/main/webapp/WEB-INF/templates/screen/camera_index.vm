@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap 101 Template</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="http://m.alicdn.com/oscun/bootstrap/css/bootstrap-1-0-1.css" rel="stylesheet" media="screen">
+    <script type="text/javascript" src="http://m.alicdn.com/yunosglobal/jquery-1-9-1.js" charset="utf-8"></script>
+    <script src="//cdnjs.bootcss.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+</head>
+<style type="text/css">
+
+</style>
+<body>
+<div id="page">
+    <table class="table table-condensed table-bordered">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>cameraIP</th>
+            <th>cameraName</th>
+            <th>cameraStatus</th>
+            <th>cameraMaster</th>
+            <th>createTime</th>
+            <th>modifyTime</th>
+            <th>操作</th>
+        </tr>
+        <tr class="addBox">
+            <td><input name="id" class="ipt i1" type="text" style="display:none;"/>NA</td>
+            <td><input name="cameraIP" class="ipt i2" type="text"/></td>
+            <td><input name="cameraName" class="ipt i3" type="text"/></td>
+            <td><input name="cameraStatus" class="ipt i4" type="text"/></td>
+            <td><input name="cameraMaster" class="ipt i5" type="text"/></td>
+            <td>NA</td>
+            <td>NA</td>
+            <td><button id="J_add" class="btn btn-success" type="button">新增</button></td>
+        </tr>
+        </thead>
+
+
+        <tbody class="tbd">
+            #foreach($i in $list)
+            <tr data-id="$i.id">
+                <td>$i.id</td>
+                <td>$i.cameraIP</td>
+                <td>$i.cameraName</td>
+                <td>$i.cameraStatus</td>
+                <td>$i.cameraMaster</td>
+                <td>$i.createTime</td>
+                <td>$i.modifyTime</td>
+                <td><button class="del btn btn-danger" type="button">删除</button></td>
+            </tr>
+            #end
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript">
+    $(function() {
+        var addBtn = $('#J_add'),
+                tableBox = $('.tbd'),
+                ipts = $('.addBox .ipt'),
+                one,
+                addUrl = '/add_camera',//新增请求地址
+                delUrl = '/delete_camera';//删除请求地址
+
+        addBtn.on('click', function(e) {
+            var trs = $('tr', tableBox),
+                    index = parseInt($($('td', trs[trs.length - 1])[0]).html(), 10) + 1,
+                    value1 =  $(ipts[0]).val(),
+                    value2 =  $(ipts[1]).val(),
+                    value3 =  $(ipts[2]).val(),
+                    value4 =  $(ipts[3]).val(),
+                    value5 =  $(ipts[4]).val();
+
+            $.post(
+                    addUrl,
+                    {
+                        'ziduan1': value1,
+                        'ziduan2': value2,
+                        'ziduan3': value3,
+                        'ziduan4': value4,
+                        'ziduan5': value5
+                    },
+                    callback,
+                    'json'
+            );
+
+            function callback(data) {
+                if(data.status != 'success') {
+                    alert(data.message);
+                    return;
+                }
+                one = $('<tr>'+
+                        '<td>'+ index +'</td>'+
+                        '<td>'+ value2 +'</td>'+
+                        '<td>'+ value3 +'</td>'+
+                        '<td>'+ value4 +'</td>'+
+                        '<td>'+ value5 +'</td>'+
+                        '<td>'+ 'NA' +'</td>'+
+                        '<td>'+ 'NA' +'</td>'+
+                        '<td><button class="btn btn-danger" type="button">删除</button></td>'+
+                        '</tr>');
+                tableBox.append(one);
+                $(ipts[0]).val('');
+                $(ipts[1]).val('');
+                $(ipts[2]).val('');
+                $(ipts[3]).val('');
+                $(ipts[4]).val('');
+            }
+
+        });
+
+        tableBox.on('click', '.del', function(e) {
+            var tar = e.target;
+            var one = $(tar).parents('tr');
+            var id = one.attr('data-id');
+            $.post(
+                    delUrl,
+                    {
+                        id : id
+                    },
+                    callback,
+                    'json'
+            );
+            function callback(data) {
+                if(data.status != 'success') {
+                    alert(data.message);
+                    return;
+                }
+                one.remove();
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

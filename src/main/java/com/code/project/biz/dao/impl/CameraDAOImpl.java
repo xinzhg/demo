@@ -30,4 +30,9 @@ public class CameraDAOImpl extends BaseDAOImpl implements CameraDAO {
     public List<CameraDO> select(CameraDO cameraDO) throws Exception {
         return getSqlMapClientTemplate().queryForList("CameraDAO.select" , cameraDO);
     }
+
+    @Override
+    public boolean delete(int id) throws Exception {
+        return getSqlMapClientTemplate().delete("CameraDAO.delete" , id) > 0;
+    }
 }

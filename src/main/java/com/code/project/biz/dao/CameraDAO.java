@@ -20,4 +20,6 @@ public interface CameraDAO {
 
     List<CameraDO> select(CameraDO cameraDO) throws Exception;
 
+    boolean delete(int id) throws Exception;
+
 }

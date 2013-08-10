@@ -14,11 +14,11 @@ public class CameraDO {
 
     private String cameraIP;
 
-    private String cameraName;
+    private String cameraName = null;
 
     private Integer cameraStatus;
 
-    private String cameraMaster;
+    private String cameraMaster = null;
 
     private Date createTime;
 

@@ -43,4 +43,8 @@
 	    ]]>
     </update>
 
+    <delete id="delete" parameterClass="int" >
+        delete from camera where id = #id#
+    </delete>
+
 </sqlMap>
