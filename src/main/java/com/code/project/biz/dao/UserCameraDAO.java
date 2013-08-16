@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
- * User: xinnan.zx
+ * User: zhangxin
  * Date: 13-6-18
  * Time: 下午2:27
  * To change this template use File | Settings | File Templates.
@@ -20,4 +20,5 @@ public interface UserCameraDAO {
 
     List<UserCameraDO> select(UserCameraDO userCameraDO) throws Exception;
 
+    boolean delete(int id) throws Exception;
 }

@@ -31,20 +31,20 @@
                         <li class="">
                             <a data-bootstro-step="5" data-bootstro-placement="bottom" data-bootstro-title="" class="bootstro" href="/userinfo_index">userinfo option</a>
                         </li>
-                        <li class="current">
+                        <li class="">
                             <a data-bootstro-step="6" data-bootstro-placement="bottom" data-bootstro-title="" class="bootstro" href="/camera_index" target="">camera option</a>
                         </li>
                         <li class="">
                             <a data-bootstro-step="5" data-bootstro-placement="bottom" data-bootstro-title="" class="bootstro" href="/usercamera_index">user camera option</a>
                         </li>
-                        <li class="">
+                        <li class="current">
                             <a data-bootstro-step="6" data-bootstro-placement="bottom" data-bootstro-title="" class="bootstro" href="/userlog_index" target="">userlog</a>
                         </li>
                         <li class="">
                             <a data-bootstro-step="5" data-bootstro-placement="bottom" data-bootstro-title="" class="bootstro" href="/systemlog_index">systemlog</a>
                         </li>
                         <li class="">
-                            <a data-bootstro-step="6" data-bootstro-placement="bottom" data-bootstro-title="" class="bootstro" href="/logout_index" target="">logout</a>
+                            <a data-bootstro-step="6" data-bootstro-placement="bottom" data-bootstro-title="" class="bootstro" href="/logout" target="">logout</a>
                         </li>
                     </ul>
                 </div>
@@ -56,23 +56,12 @@
         <thead>
         <tr>
             <th>id</th>
-            <th>cameraIP</th>
-            <th>cameraName</th>
-            <th>cameraStatus</th>
-            <th>cameraMaster</th>
+            <th>systemTime</th>
+            <th>serverName</th>
+            <th>content</th>
             <th>createTime</th>
             <th>modifyTime</th>
             <th>操作</th>
-        </tr>
-        <tr class="addBox">
-            <td><input name="id" class="ipt i1" type="text" style="display:none;"/>NA</td>
-            <td><input name="cameraIP" class="ipt i2" type="text"/></td>
-            <td><input name="cameraName" class="ipt i3" type="text"/></td>
-            <td><input name="cameraStatus" class="ipt i4" type="text"/></td>
-            <td><input name="cameraMaster" class="ipt i5" type="text"/></td>
-            <td>NA</td>
-            <td>NA</td>
-            <td><button id="J_add" class="btn btn-success" type="button">新增</button></td>
         </tr>
         </thead>
 
@@ -81,10 +70,9 @@
             #foreach($i in $list)
             <tr data-id="$i.id">
                 <td>$i.id</td>
-                <td>$i.cameraIP</td>
-                <td>$i.cameraName</td>
-                <td>$i.cameraStatus</td>
-                <td>$i.cameraMaster</td>
+                <td>$i.systemTime</td>
+                <td>$i.serverName</td>
+                <td>$i.content</td>
                 <td>$i.createTime</td>
                 <td>$i.modifyTime</td>
                 <td><button class="del btn btn-danger" type="button">删除</button></td>
@@ -99,8 +87,8 @@
                 tableBox = $('.tbd'),
                 ipts = $('.addBox .ipt'),
                 one,
-                addUrl = '/add_camera',//新增请求地址
-                delUrl = '/delete_camera';//删除请求地址
+                addUrl = '/add_userlog',//新增请求地址
+                delUrl = '/delete_userlog';//删除请求地址
 
         addBtn.on('click', function(e) {
             var trs = $('tr', tableBox),

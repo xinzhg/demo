@@ -34,11 +34,13 @@ public class TestUserLog {
     @Test
     public void testInsert() {
         try {
-            UserLogDO userLogDO = new UserLogDO();
-            userLogDO.setUserName("username");
-            userLogDO.setContent("content");
-            userLogDO.setUserTime(new Date());
-            userLogDAO.add(userLogDO);
+            for (int i = 0;i < 10 ;i++) {
+                UserLogDO userLogDO = new UserLogDO();
+                userLogDO.setUserName("username");
+                userLogDO.setContent("content");
+                userLogDO.setUserTime(new Date());
+                userLogDAO.add(userLogDO);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

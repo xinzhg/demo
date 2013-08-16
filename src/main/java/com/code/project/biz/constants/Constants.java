@@ -2,7 +2,7 @@ package com.code.project.biz.constants;
 
 /**
  * Created with IntelliJ IDEA.
- * User: xinnan.zx
+ * User: zhangxin
  * Date: 13-7-22
  * Time: 下午3:41
  * To change this template use File | Settings | File Templates.

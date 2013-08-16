@@ -28,10 +28,10 @@
             <div class="container">
                 <div class="nav-collapse collapse">
                     <ul class="nav">
-                        <li class="">
+                        <li class="current">
                             <a data-bootstro-step="5" data-bootstro-placement="bottom" data-bootstro-title="" class="bootstro" href="/userinfo_index">userinfo option</a>
                         </li>
-                        <li class="current">
+                        <li class="">
                             <a data-bootstro-step="6" data-bootstro-placement="bottom" data-bootstro-title="" class="bootstro" href="/camera_index" target="">camera option</a>
                         </li>
                         <li class="">
@@ -56,23 +56,33 @@
         <thead>
         <tr>
             <th>id</th>
-            <th>cameraIP</th>
-            <th>cameraName</th>
-            <th>cameraStatus</th>
-            <th>cameraMaster</th>
+            <th>userName</th>
+            <th>password</th>
+            <th>type（数字）</th>
+            <th>email</th>
+            <th>read orignal（数字）</th>
+            <th>on_off（数字）</th>
+            <th>defog（数字）</th>
+            <th>read defog（数字）</th>
+            <th>register camera（数字）</th>
             <th>createTime</th>
             <th>modifyTime</th>
             <th>操作</th>
         </tr>
         <tr class="addBox">
             <td><input name="id" class="ipt i1" type="text" style="display:none;"/>NA</td>
-            <td><input name="cameraIP" class="ipt i2" type="text"/></td>
-            <td><input name="cameraName" class="ipt i3" type="text"/></td>
-            <td><input name="cameraStatus" class="ipt i4" type="text"/></td>
-            <td><input name="cameraMaster" class="ipt i5" type="text"/></td>
+            <td><input name="userName" class="ipt i2" type="text"/></td>
+            <td><input name="password" class="ipt i3" type="text" style="display:none;"/>NA</td>
+            <td><input name="type" class="ipt i4" type="text"/></td>
+            <td><input name="email" class="ipt i5" type="text"/></td>
+            <td><input name="readOrignal" class="ipt i6" type="text"/></td>
+            <td><input name="onOff" class="ipt i7" type="text"/></td>
+            <td><input name="defog" class="ipt i8" type="text"/></td>
+            <td><input name="readDefog" class="ipt i9" type="text"/></td>
+            <td><input name="registerCamera" class="ipt i10" type="text"/></td>
             <td>NA</td>
             <td>NA</td>
-            <td><button id="J_add" class="btn btn-success" type="button">新增</button></td>
+            <td><button id="J_add" class="btn btn-success" type="button">更新</button></td>
         </tr>
         </thead>
 
@@ -80,13 +90,18 @@
         <tbody class="tbd">
             #foreach($i in $list)
             <tr data-id="$i.id">
-                <td>$i.id</td>
-                <td>$i.cameraIP</td>
-                <td>$i.cameraName</td>
-                <td>$i.cameraStatus</td>
-                <td>$i.cameraMaster</td>
-                <td>$i.createTime</td>
-                <td>$i.modifyTime</td>
+                <td>$!i.id</td>
+                <td>$!i.userName</td>
+                <td>*****</td>
+                <td>$!i.type</td>
+                <td>$!i.email</td>
+                <td>$!i.readOrignal</td>
+                <td>$!i.onOff</td>
+                <td>$!i.deFog</td>
+                <td>$!i.readDeFog</td>
+                <td>$!i.registerCamera</td>
+                <th>$!i.createTime</th>
+                <th>$!i.modifyTime</th>
                 <td><button class="del btn btn-danger" type="button">删除</button></td>
             </tr>
             #end
@@ -99,8 +114,8 @@
                 tableBox = $('.tbd'),
                 ipts = $('.addBox .ipt'),
                 one,
-                addUrl = '/add_camera',//新增请求地址
-                delUrl = '/delete_camera';//删除请求地址
+                addUrl = '/add_userinfo',//新增请求地址
+                delUrl = '/delete_userinfo';//删除请求地址
 
         addBtn.on('click', function(e) {
             var trs = $('tr', tableBox),
@@ -109,7 +124,12 @@
                     value2 =  $(ipts[1]).val(),
                     value3 =  $(ipts[2]).val(),
                     value4 =  $(ipts[3]).val(),
-                    value5 =  $(ipts[4]).val();
+                    value5 =  $(ipts[4]).val(),
+                    value6 =  $(ipts[5]).val(),
+                    value7 =  $(ipts[6]).val(),
+                    value8 =  $(ipts[7]).val(),
+                    value9 =  $(ipts[8]).val(),
+                    value10 =  $(ipts[9]).val();
 
             $.post(
                     addUrl,
@@ -118,7 +138,12 @@
                         'ziduan2': value2,
                         'ziduan3': value3,
                         'ziduan4': value4,
-                        'ziduan5': value5
+                        'ziduan5': value5,
+                        'ziduan6': value6,
+                        'ziduan7': value7,
+                        'ziduan8': value8,
+                        'ziduan9': value9,
+                        'ziduan10': value10
                     },
                     callback,
                     'json'
@@ -135,6 +160,11 @@
                         '<td>'+ value3 +'</td>'+
                         '<td>'+ value4 +'</td>'+
                         '<td>'+ value5 +'</td>'+
+                        '<td>'+ value6 +'</td>'+
+                        '<td>'+ value7 +'</td>'+
+                        '<td>'+ value8 +'</td>'+
+                        '<td>'+ value9 +'</td>'+
+                        '<td>'+ value10 +'</td>'+
                         '<td>'+ 'NA' +'</td>'+
                         '<td>'+ 'NA' +'</td>'+
                         '<td><button class="btn btn-danger" type="button">删除</button></td>'+
@@ -145,6 +175,11 @@
                 $(ipts[2]).val('');
                 $(ipts[3]).val('');
                 $(ipts[4]).val('');
+                $(ipts[5]).val('');
+                $(ipts[6]).val('');
+                $(ipts[7]).val('');
+                $(ipts[8]).val('');
+                $(ipts[9]).val('');
             }
 
         });

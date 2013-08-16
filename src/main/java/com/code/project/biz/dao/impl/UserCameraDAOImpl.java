@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
- * User: xinnan.zx
+ * User: zhangxin
  * Date: 13-6-18
  * Time: 下午2:28
  * To change this template use File | Settings | File Templates.
@@ -29,5 +29,10 @@ public class UserCameraDAOImpl extends BaseDAOImpl implements UserCameraDAO {
     @Override
     public List<UserCameraDO> select(UserCameraDO userCameraDO) throws Exception {
         return getSqlMapClientTemplate().queryForList("UserCameraDAO.select",userCameraDO);
+    }
+
+    @Override
+    public boolean delete(int id) throws Exception {
+        return getSqlMapClientTemplate().delete("UserCameraDAO.delete",id) > 0;
     }
 }

@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
- * User: xinnan.zx
+ * User: zhangxin
  * Date: 13-6-18
  * Time: 下午2:28
  * To change this template use File | Settings | File Templates.
@@ -24,6 +24,11 @@ public class UserInfoDAOImpl extends BaseDAOImpl implements UserInfoDAO {
 
     public List<UserInfoDO> select(UserInfoDO userInfoDO) throws Exception {
         return (List<UserInfoDO>)getSqlMapClientTemplate().queryForList("UserInfoDAO.select",userInfoDO);
+    }
+
+    @Override
+    public boolean delete(int id) throws Exception {
+        return getSqlMapClientTemplate().delete("UserInfoDAO.delete",id) > 0;
     }
 
 }

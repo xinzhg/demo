@@ -4,6 +4,7 @@ import com.code.project.biz.constants.Constants;
 import com.code.project.biz.dao.UserInfoDAO;
 import com.code.project.biz.dataobject.UserInfoDO;
 import com.code.project.biz.util.MD5Util;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +35,13 @@ public class LoginController {
             for (Cookie cookie : cookies) {
                 if ("SESSION_LOGIN_USERNAME".equals(cookie.getName())) {
                     usernameCookie = cookie.getValue();
+                    if (!StringUtils.isNotBlank(usernameCookie))
+                        return false;
                 }
                 if ("SESSION_LOGIN_PASSWORD".equals(cookie.getName())) {
                     passwordCookie = cookie.getValue();
+                    if (!StringUtils.isNotBlank(passwordCookie))
+                        return false;
                 }
             }
             if (usernameCookie != null && passwordCookie != null) {

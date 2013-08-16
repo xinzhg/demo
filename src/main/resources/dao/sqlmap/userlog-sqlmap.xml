@@ -39,4 +39,8 @@
 	    ]]>
     </update>
 
+    <delete id="delete" parameterClass="int" >
+        delete from user_log where id = #id#
+    </delete>
+
 </sqlMap>

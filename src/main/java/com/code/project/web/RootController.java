@@ -6,6 +6,7 @@ import com.code.project.biz.dao.UserInfoDAO;
 import com.code.project.biz.dataobject.TestDO;
 import com.code.project.biz.dataobject.UserInfoDO;
 import com.code.project.biz.util.MD5Util;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -108,6 +109,7 @@ public class RootController {
         try {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
+            String rurl = request.getParameter("rurl");
             String host = request.getServerName();
             Cookie cookie = new Cookie("SESSION_LOGIN_USERNAME", username); // 保存用户名到Cookie
             cookie.setPath("/");
@@ -126,7 +128,11 @@ public class RootController {
             if(list == null || list.isEmpty()) {
 
             } else {
-                response.sendRedirect("/index");
+                if(StringUtils.isNotBlank(rurl))  {
+                    response.sendRedirect(rurl);
+                }             else {
+                    response.sendRedirect("/camera_index");
+                }
             }
         } catch (Exception e) {
             log.error("error in rootcontroller :" ,e);
@@ -134,6 +140,31 @@ public class RootController {
         }
         return modelAndView;
     }
+
+    @RequestMapping(value = "/logout_index", method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView logout(HttpServletRequest request, HttpServletResponse response ) {
+        ModelAndView modelAndView = new ModelAndView("screen/login");
+        try {
+            String host = request.getServerName();
+            Cookie cookie = new Cookie("SESSION_LOGIN_USERNAME", ""); // 保存用户名到Cookie
+            cookie.setPath("/");
+            cookie.setDomain(host);
+            cookie.setMaxAge(99999999);
+            response.addCookie(cookie);
+            cookie = new Cookie("SESSION_LOGIN_PASSWORD", "");
+            cookie.setPath("/");
+            cookie.setDomain(host);
+            cookie.setMaxAge(99999999);
+            response.addCookie(cookie);
+            response.sendRedirect("/login");
+        } catch (Exception e) {
+            log.error("error in rootcontroller :" ,e);
+            return handleException(modelAndView);
+        }
+        return modelAndView;
+    }
+
+
 
     @ExceptionHandler({HttpRequestMethodNotSupportedException.class})
     public ModelAndView handleException(ModelAndView modelAndView) {

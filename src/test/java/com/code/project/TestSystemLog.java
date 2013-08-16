@@ -33,11 +33,14 @@ public class TestSystemLog {
     @Test
     public void testInsert() {
         try {
-            SystemLogDO systemLogDO = new SystemLogDO();
-            systemLogDO.setServerName("servername");
-            systemLogDO.setContent("content");
-            systemLogDO.setSystemTime(new Date());
-            systemLogDAO.add(systemLogDO);
+            for(int i = 0 ; i< 10 ; i++) {
+                SystemLogDO systemLogDO = new SystemLogDO();
+                systemLogDO.setServerName("servername");
+                systemLogDO.setContent("content");
+                systemLogDO.setSystemTime(new Date());
+                systemLogDAO.add(systemLogDO);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

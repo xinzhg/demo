@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
- * User: xinnan.zx
+ * User: zhangxin
  * Date: 13-6-18
  * Time: 下午2:28
  * To change this template use File | Settings | File Templates.
@@ -19,6 +19,11 @@ public class SystemLogDAOImpl extends BaseDAOImpl implements SystemLogDAO {
     @Override
     public Integer add(SystemLogDO systemLogDO) throws Exception {
         return (Integer)getSqlMapClientTemplate().insert("SystemLogDAO.insert",systemLogDO);
+    }
+
+    @Override
+    public boolean delete(int id) throws Exception {
+        return getSqlMapClientTemplate().delete("SystemLogDAO.delete",id) > 0;
     }
 
     @Override

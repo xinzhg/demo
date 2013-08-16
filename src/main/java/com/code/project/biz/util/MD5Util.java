@@ -5,7 +5,7 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * Created with IntelliJ IDEA.
- * User: xinnan.zx
+ * User: zhangxin
  * Date: 13-7-10
  * Time: 下午5:45
  * To change this template use File | Settings | File Templates.
