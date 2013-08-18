@@ -57,6 +57,7 @@
             <input type="checkbox" value="remember-me"> Remember me
         </label>
         <button class="btn btn-large btn-primary" type="submit">Sign in</button>
+        <button onclick="window.open('/reg')" class="btn btn-large" type="">Sign up</button>
     </form>
 
 </div> <!-- /container -->
